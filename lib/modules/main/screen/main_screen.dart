@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class MainScreen extends StatefulWidget {
-  MainScreen({Key? key}) : super(key: key);
+  const MainScreen({Key? key}) : super(key: key);
 
   @override
   State<MainScreen> createState() => _MainScreenState();
@@ -18,19 +18,19 @@ class _MainScreenState extends State<MainScreen> {
       appBar: AppBar(
         backgroundColor: Styles.primaryColor,
         leading: const Padding(
-          padding: const EdgeInsets.all(10.0),
+          padding: EdgeInsets.all(10.0),
           child: CircleAvatar(
             backgroundImage: NetworkImage(
                 "https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80"),
           ),
         ),
-        title: Text("Profile"),
+        title: const Text("Profile"),
         actions: [
           IconButton(
             onPressed: () {
               BlocProvider.of<AuthenticationBloc>(context).add(LoggedOut());
             },
-            icon: Icon(EvaIcons.logOutOutline),
+            icon: const Icon(EvaIcons.logOutOutline),
           ),
         ],
       ),

@@ -5,7 +5,7 @@ class UserRepository {
   static String mainURL = 'https://reqres.in';
   var loginURL = '$mainURL/api/login';
 
-  final FlutterSecureStorage storage = FlutterSecureStorage();
+  final FlutterSecureStorage storage = const FlutterSecureStorage();
   final Dio _dio = Dio();
 
   Future<bool> hasToken() async {

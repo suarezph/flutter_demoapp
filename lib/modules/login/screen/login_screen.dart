@@ -4,7 +4,6 @@ import 'package:demoapp/modules/login/login.dart';
 import 'package:demoapp/repositories/user_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 class LoginScreen extends StatelessWidget {
   final UserRepository userRepository;
@@ -17,7 +16,7 @@ class LoginScreen extends StatelessWidget {
       backgroundColor: Colors.grey[300],
       body: BlocProvider(
         create: (context) => LoginBloc(
-          RepositoryProvider.of<UserRepository>(context),
+          userRepository,
           BlocProvider.of<AuthenticationBloc>(context),
         ),
         child: LoginForm(userRepository: userRepository),

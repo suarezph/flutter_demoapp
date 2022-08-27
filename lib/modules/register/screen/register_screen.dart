@@ -14,27 +14,27 @@ class RegistrationScreen extends StatelessWidget {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                SizedBox(height: 10),
-                Icon(
+                const SizedBox(height: 10),
+                const Icon(
                   Icons.android,
                   size: 100,
                 ),
                 // hello
-                SizedBox(height: 65),
+                const SizedBox(height: 65),
                 Text(
                   "Hello there",
                   style: GoogleFonts.bebasNeue(
                     fontSize: 52,
                   ),
                 ),
-                SizedBox(height: 10),
-                Text(
+                const SizedBox(height: 10),
+                const Text(
                   "Register below with your details!",
                   style: TextStyle(
                     fontSize: 20,
                   ),
                 ),
-                SizedBox(height: 50),
+                const SizedBox(height: 50),
                 // email field
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 25.0),
@@ -44,8 +44,8 @@ class RegistrationScreen extends StatelessWidget {
                       border: Border.all(color: Colors.white),
                       borderRadius: BorderRadius.circular(12),
                     ),
-                    child: Padding(
-                      padding: const EdgeInsets.only(left: 20.0),
+                    child: const Padding(
+                      padding: EdgeInsets.only(left: 20.0),
                       child: TextField(
                         decoration: InputDecoration(
                             border: InputBorder.none,
@@ -54,7 +54,7 @@ class RegistrationScreen extends StatelessWidget {
                     ),
                   ),
                 ),
-                SizedBox(height: 20),
+                const SizedBox(height: 20),
 
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 25.0),
@@ -64,8 +64,8 @@ class RegistrationScreen extends StatelessWidget {
                       border: Border.all(color: Colors.white),
                       borderRadius: BorderRadius.circular(12),
                     ),
-                    child: Padding(
-                      padding: const EdgeInsets.only(left: 20.0),
+                    child: const Padding(
+                      padding: EdgeInsets.only(left: 20.0),
                       child: TextField(
                         obscureText: true,
                         decoration: InputDecoration(
@@ -74,7 +74,7 @@ class RegistrationScreen extends StatelessWidget {
                     ),
                   ),
                 ),
-                SizedBox(height: 20),
+                const SizedBox(height: 20),
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 25.0),
                   child: Container(
@@ -83,8 +83,8 @@ class RegistrationScreen extends StatelessWidget {
                       border: Border.all(color: Colors.white),
                       borderRadius: BorderRadius.circular(12),
                     ),
-                    child: Padding(
-                      padding: const EdgeInsets.only(left: 20.0),
+                    child: const Padding(
+                      padding: EdgeInsets.only(left: 20.0),
                       child: TextField(
                         obscureText: true,
                         decoration: InputDecoration(
@@ -94,18 +94,18 @@ class RegistrationScreen extends StatelessWidget {
                     ),
                   ),
                 ),
-                SizedBox(height: 20),
+                const SizedBox(height: 20),
 
                 // sign in button
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 25.0),
                   child: Container(
-                    padding: EdgeInsets.all(20),
+                    padding: const EdgeInsets.all(20),
                     decoration: BoxDecoration(
                       color: Colors.deepPurple,
                       borderRadius: BorderRadius.circular(12),
                     ),
-                    child: Center(
+                    child: const Center(
                       child: Text(
                         "Sign Up",
                         style: TextStyle(
@@ -117,14 +117,14 @@ class RegistrationScreen extends StatelessWidget {
                     ),
                   ),
                 ),
-                SizedBox(height: 25),
+                const SizedBox(height: 25),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Text("Already a member?"),
+                    const Text("Already a member?"),
                     GestureDetector(
                       onTap: () => {},
-                      child: Text(
+                      child: const Text(
                         ' Login now',
                         style: TextStyle(
                           color: Colors.blue,

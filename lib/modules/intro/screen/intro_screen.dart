@@ -11,13 +11,10 @@ class IntroScreen extends StatefulWidget {
   const IntroScreen({Key? key, required this.userRepository}) : super(key: key);
 
   @override
-  State<IntroScreen> createState() => _IntroScreenState(userRepository);
+  State<IntroScreen> createState() => _IntroScreenState();
 }
 
 class _IntroScreenState extends State<IntroScreen> {
-  final UserRepository userRepository;
-  _IntroScreenState(this.userRepository);
-
   bool clicked = false;
 
   void afterIntroComplete() {
@@ -113,7 +110,7 @@ class _IntroScreenState extends State<IntroScreen> {
   Widget build(BuildContext context) {
     return clicked
         ? LoginScreen(
-            userRepository: userRepository,
+            userRepository: widget.userRepository,
           )
         : IntroductionScreen(
             pages: pages,

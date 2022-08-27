@@ -48,15 +48,15 @@ class App extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       home: BlocBuilder<AuthenticationBloc, AuthenticationState>(
         builder: (context, state) {
-          if (state is AuthenticatedUnauthenticated) {
-            return MainScreen();
+          if (state is AuthenticationAuthenticated) {
+            return const MainScreen();
           }
           if (state is AuthenticatedUnauthenticated) {
             return IntroScreen(userRepository: userRepository);
           }
           if (state is AuthenticationLoading) {
             return const Scaffold(
-              body: const CircularProgressIndicator(),
+              body: CircularProgressIndicator(),
             );
           }
           return const Scaffold(
