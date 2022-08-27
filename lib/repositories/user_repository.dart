@@ -27,8 +27,8 @@ class UserRepository {
 
   Future<String> login(String email, String password) async {
     Response response = await _dio.post(loginURL, data: {
-      email: email,
-      password: password,
+      "email": email,
+      "password": password,
     });
 
     return response.data["token"];
