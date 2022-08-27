@@ -5,29 +5,11 @@ import 'package:demoapp/repositories/user_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class GlobalObserver extends BlocObserver {
-  @override
-  void onEvent(Bloc bloc, Object? event) {
-    print('onEvent -- bloc: ${bloc.runtimeType} event: $event');
-    super.onEvent(bloc, event);
-  }
-
-  @override
-  void onTransition(Bloc bloc, Transition transition) {
-    print('onTransition -- bloc: ${bloc.runtimeType} transition: $transition');
-    super.onTransition(bloc, transition);
-  }
-
-  @override
-  void onError(BlocBase bloc, Object error, StackTrace stackTrace) {
-    print('${bloc.runtimeType} $error $stackTrace');
-    super.onError(bloc, error, stackTrace);
-  }
-}
+import 'app_observer.dart';
 
 void main() {
-  final observer = GlobalObserver();
   UserRepository userRepository = UserRepository();
+  Bloc.observer = AppBlocObserver();
   runApp(
     BlocProvider(
       create: (context) {
