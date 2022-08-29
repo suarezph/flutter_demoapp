@@ -1,11 +1,10 @@
 import 'package:demoapp/modules/authentication/bloc/authentication_bloc.dart';
-import 'package:demoapp/modules/intro/intro.dart';
-import 'package:demoapp/modules/main/screen/main_screen.dart';
 import 'package:demoapp/repositories/user_repository.dart';
+import 'package:demoapp/router/router.gr.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import 'app_observer.dart';
+import 'observer/app_bloc_observer.dart';
 
 void main() {
   UserRepository userRepository = UserRepository();
@@ -15,37 +14,27 @@ void main() {
       create: (context) {
         return AuthenticationBloc(userRepository)..add(AppStarted());
       },
-      child: App(userRepository: userRepository),
+      child: AppRoot(userRepository: userRepository),
     ),
   );
 }
 
-class App extends StatelessWidget {
+class AppRoot extends StatelessWidget {
   final UserRepository userRepository;
-  const App({Key? key, required this.userRepository}) : super(key: key);
+  final _appRouter = AppRouter();
+  AppRoot({Key? key, required this.userRepository}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return MaterialApp.router(
       debugShowCheckedModeBanner: false,
-      home: BlocBuilder<AuthenticationBloc, AuthenticationState>(
-        builder: (context, state) {
-          if (state is AuthenticationAuthenticated) {
-            return const MainScreen();
-          }
-          if (state is AuthenticatedUnauthenticated) {
-            return IntroScreen(userRepository: userRepository);
-          }
-          if (state is AuthenticationLoading) {
-            return const Scaffold(
-              body: CircularProgressIndicator(),
-            );
-          }
-          return const Scaffold(
-            body: CircularProgressIndicator(),
-          );
-        },
+      routerDelegate: _appRouter.delegate(
+        initialRoutes: [
+          AppScreen(userRepository: userRepository),
+        ],
       ),
+      routeInformationParser: _appRouter.defaultRouteParser(),
+      builder: (context, router) => router!,
     );
   }
 }

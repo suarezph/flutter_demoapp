@@ -2,8 +2,8 @@ import 'package:dio/dio.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
 class UserRepository {
-  static String mainURL = 'https://reqres.in';
-  var loginURL = '$mainURL/api/login';
+  static String mainURL = 'http://api.dev.hashgamehub.com';
+  var loginURL = '$mainURL/api/anon/member/validate';
 
   final FlutterSecureStorage storage = const FlutterSecureStorage();
   final Dio _dio = Dio();
@@ -18,7 +18,7 @@ class UserRepository {
 
   Future<bool> validateToken(token) async {
     try {
-      Response response = await _dio.get('$loginURL?token=$token');
+      // Response response = await _dio.get('$loginURL?token=$token');
       return true;
     } catch (e) {
       return false;
@@ -36,10 +36,10 @@ class UserRepository {
 
   Future<String> login(String email, String password) async {
     Response response = await _dio.post(loginURL, data: {
-      email: email,
-      password: password,
+      "ia": email,
+      "ip": password,
     });
 
-    return response.data["token"];
+    return response.data['data']['gToken'];
   }
 }

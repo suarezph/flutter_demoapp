@@ -1,5 +1,7 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:demoapp/modules/login/login.dart';
 import 'package:demoapp/repositories/user_repository.dart';
+import 'package:demoapp/router/router.gr.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -159,7 +161,10 @@ class _LoginFormState extends State<LoginForm> {
                       children: [
                         const Text("Forgot your password?"),
                         InkWell(
-                          onTap: () {},
+                          onTap: () {
+                            AutoRouter.of(context)
+                                .push(const ForgotPasswordRouter());
+                          },
                           child: const Text(
                             ' Reset Password',
                             style: TextStyle(

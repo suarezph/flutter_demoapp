@@ -108,38 +108,38 @@ class _IntroScreenState extends State<IntroScreen> {
   ];
   @override
   Widget build(BuildContext context) {
-    return clicked
-        ? LoginScreen(
-            userRepository: widget.userRepository,
-          )
-        : IntroductionScreen(
-            pages: pages,
-            onDone: () {
-              afterIntroComplete();
-            },
-            onSkip: () {
-              afterIntroComplete();
-            },
-            skip: const Text(
-              "Skip",
-              style: TextStyle(fontWeight: FontWeight.bold, color: Colors.grey),
-            ),
-            next: const Icon(Icons.navigate_next),
-            done: const Text(
-              "Done",
-              style: TextStyle(fontWeight: FontWeight.bold),
-            ),
-            showSkipButton: true,
-            dotsDecorator: DotsDecorator(
-              size: const Size.square(7.0),
-              activeSize: const Size(20.0, 5.0),
-              activeColor: Styles.primaryColor,
-              color: Colors.black26,
-              spacing: const EdgeInsets.symmetric(horizontal: 3.0),
-              activeShape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(5.0),
-              ),
-            ),
-          );
+    if (clicked == true) {
+      return LoginScreen(userRepository: widget.userRepository);
+    } else {
+      return IntroductionScreen(
+        pages: pages,
+        onDone: () {
+          afterIntroComplete();
+        },
+        onSkip: () {
+          afterIntroComplete();
+        },
+        skip: const Text(
+          "Skip",
+          style: TextStyle(fontWeight: FontWeight.bold, color: Colors.grey),
+        ),
+        next: const Icon(Icons.navigate_next),
+        done: const Text(
+          "Done",
+          style: TextStyle(fontWeight: FontWeight.bold),
+        ),
+        showSkipButton: true,
+        dotsDecorator: DotsDecorator(
+          size: const Size.square(7.0),
+          activeSize: const Size(20.0, 5.0),
+          activeColor: Styles.primaryColor,
+          color: Colors.black26,
+          spacing: const EdgeInsets.symmetric(horizontal: 3.0),
+          activeShape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(5.0),
+          ),
+        ),
+      );
+    }
   }
 }
