@@ -50,6 +50,8 @@ dependencies:
   fluentui_icons: 
   auto_route:
   salomon_bottom_bar: 
+  flutter_localizations:
+    sdk: flutter
 
 dev_dependencies:
   flutter_test:

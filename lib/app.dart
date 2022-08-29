@@ -6,15 +6,16 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'modules/authentication/authentication.dart';
 import 'modules/intro/screen/intro_screen.dart';
 
-class AppScreen extends StatefulWidget {
+class AppRootScreen extends StatefulWidget {
   final UserRepository userRepository;
-  const AppScreen({Key? key, required this.userRepository}) : super(key: key);
+  const AppRootScreen({Key? key, required this.userRepository})
+      : super(key: key);
 
   @override
-  State<AppScreen> createState() => _AppScreenState();
+  State<AppRootScreen> createState() => _AppRootScreenState();
 }
 
-class _AppScreenState extends State<AppScreen> {
+class _AppRootScreenState extends State<AppRootScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

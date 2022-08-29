@@ -14,15 +14,15 @@ void main() {
       create: (context) {
         return AuthenticationBloc(userRepository)..add(AppStarted());
       },
-      child: AppRoot(userRepository: userRepository),
+      child: EntryApp(userRepository: userRepository),
     ),
   );
 }
 
-class AppRoot extends StatelessWidget {
+class EntryApp extends StatelessWidget {
   final UserRepository userRepository;
   final _appRouter = AppRouter();
-  AppRoot({Key? key, required this.userRepository}) : super(key: key);
+  EntryApp({Key? key, required this.userRepository}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -30,7 +30,7 @@ class AppRoot extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       routerDelegate: _appRouter.delegate(
         initialRoutes: [
-          AppScreen(userRepository: userRepository),
+          AppRootRoute(userRepository: userRepository),
         ],
       ),
       routeInformationParser: _appRouter.defaultRouteParser(),

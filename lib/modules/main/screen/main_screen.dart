@@ -1,39 +1,59 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:demoapp/constants/theme.dart';
-import 'package:demoapp/modules/authentication/authentication.dart';
-import 'package:eva_icons_flutter/eva_icons_flutter.dart';
+import 'package:demoapp/router/router.gr.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:salomon_bottom_bar/salomon_bottom_bar.dart';
 
-class MainScreen extends StatefulWidget {
+class MainScreen extends StatelessWidget {
   const MainScreen({Key? key}) : super(key: key);
 
   @override
-  State<MainScreen> createState() => _MainScreenState();
-}
-
-class _MainScreenState extends State<MainScreen> {
-  @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Styles.primaryColor,
-        leading: const Padding(
-          padding: EdgeInsets.all(10.0),
-          child: CircleAvatar(
-            backgroundImage: NetworkImage(
-                "https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80"),
+    return AutoTabsScaffold(
+      // appBarBuilder: (context, tabsRouter) => AppBar(
+      //   backgroundColor: Styles.bgColor,
+      //   shadowColor: Colors.transparent,
+      //   title: const Text("Change to widget"),
+      //   centerTitle: true,
+      //   leading: const AutoLeadingButton(),
+      // ),
+      backgroundColor: Styles.bgColor,
+      routes: const [
+        DashboardRoute(),
+        WalletRoute(),
+        ProfileRoute(),
+        OthersRoute(),
+      ],
+      bottomNavigationBuilder: (context, tabsRouter) {
+        return SalomonBottomBar(
+          margin: const EdgeInsets.symmetric(
+            horizontal: 10,
+            vertical: 10,
           ),
-        ),
-        title: const Text("Profile"),
-        actions: [
-          IconButton(
-            onPressed: () {
-              BlocProvider.of<AuthenticationBloc>(context).add(LoggedOut());
-            },
-            icon: const Icon(EvaIcons.logOutOutline),
-          ),
-        ],
-      ),
+          currentIndex: tabsRouter.activeIndex,
+          onTap: tabsRouter.setActiveIndex,
+          selectedItemColor: Styles.primaryColor,
+          unselectedItemColor: const Color(0xFF526480),
+          items: [
+            SalomonBottomBarItem(
+              icon: const Icon(Icons.dashboard, size: 25),
+              title: const Text("Dashboard"),
+            ),
+            SalomonBottomBarItem(
+              icon: const Icon(Icons.wallet, size: 25),
+              title: const Text("Wallet"),
+            ),
+            SalomonBottomBarItem(
+              icon: const Icon(Icons.person, size: 25),
+              title: const Text("Profile"),
+            ),
+            SalomonBottomBarItem(
+              icon: const Icon(Icons.more_horiz_rounded, size: 25),
+              title: const Text("More"),
+            ),
+          ],
+        );
+      },
     );
   }
 }

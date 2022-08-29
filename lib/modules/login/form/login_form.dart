@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:demoapp/constants/theme.dart';
 import 'package:demoapp/modules/login/login.dart';
 import 'package:demoapp/repositories/user_repository.dart';
 import 'package:demoapp/router/router.gr.dart';
@@ -139,7 +140,7 @@ class _LoginFormState extends State<LoginForm> {
                               child: Container(
                                 padding: const EdgeInsets.all(20),
                                 decoration: BoxDecoration(
-                                  color: Colors.deepPurple,
+                                  color: Styles.primaryColor,
                                   borderRadius: BorderRadius.circular(12),
                                 ),
                                 child: const Center(
@@ -163,7 +164,7 @@ class _LoginFormState extends State<LoginForm> {
                         InkWell(
                           onTap: () {
                             AutoRouter.of(context)
-                                .push(const ForgotPasswordRouter());
+                                .push(const ForgotPasswordRoute());
                           },
                           child: const Text(
                             ' Reset Password',
