@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:demoapp/constants/theme.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gap/gap.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -19,13 +20,17 @@ class ForgotPasswordForm extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              const SizedBox(height: 10),
-              const Icon(
-                Icons.android,
-                size: 100,
+              const Gap(25),
+              Container(
+                width: 100,
+                height: 100,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                child: SvgPicture.asset('assets/images/logo.svg'),
               ),
               // hello
-              const SizedBox(height: 65),
+              const SizedBox(height: 55),
               Text(
                 "Reset Password",
                 style: GoogleFonts.bebasNeue(

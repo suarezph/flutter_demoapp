@@ -1,5 +1,9 @@
 import 'package:demoapp/constants/theme.dart';
+import 'package:demoapp/widgets/announcement_content_widget.dart';
+import 'package:demoapp/widgets/credit_box_widget.dart';
+import 'package:demoapp/widgets/header_view_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gap/gap.dart';
 
 class DashboardScreen extends StatelessWidget {
@@ -8,9 +12,6 @@ class DashboardScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // appBar: AppBar(
-      //   title: Text('Dashboard'),
-      // ),
       backgroundColor: Styles.bgColor,
       body: ListView(
         children: [
@@ -32,10 +33,8 @@ class DashboardScreen extends StatelessWidget {
                           style: Styles.headLineStyle3,
                         ),
                         const Gap(5),
-                        Text(
-                          "Firstname Lastname",
-                          style: Styles.headLineStyle1,
-                        ),
+                        Text("Firstname Lastname",
+                            style: Styles.headLineStyle2),
                       ],
                     ),
                     Container(
@@ -43,15 +42,41 @@ class DashboardScreen extends StatelessWidget {
                       height: 50,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(10),
-                        image: const DecorationImage(
-                          fit: BoxFit.fitHeight,
-                          image: AssetImage("assets/images/img_1.png"),
-                        ),
                       ),
+                      child: SvgPicture.asset('assets/images/logo.svg'),
                     ),
                   ],
                 ),
-                const Gap(25), //sizedBox equavalent
+                const Gap(25),
+                SingleChildScrollView(
+                  scrollDirection: Axis.horizontal,
+                  padding: const EdgeInsets.only(
+                    left: 10,
+                  ),
+                  child: Row(
+                    children: [
+                      AppCreditBoxWidget(),
+                      AppCreditBoxWidget(),
+                      AppCreditBoxWidget()
+                    ],
+                  ),
+                ),
+                const Gap(25),
+                Container(
+                  child: const AppHeaderViewWidget(
+                      bigText: "Announcements", smallText: "View All"),
+                ),
+                const Gap(15),
+                Column(
+                  children: [
+                    AppAnnouncementBoxWidget(),
+                    AppAnnouncementBoxWidget(),
+                    AppAnnouncementBoxWidget(),
+                    AppAnnouncementBoxWidget(),
+                    AppAnnouncementBoxWidget(),
+                  ],
+                ),
+                const Gap(15), //sizedBox equavalent
               ],
             ),
           ),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 Color primary = HexColor('#00AB55');
 
@@ -30,4 +31,28 @@ class HexColor extends Color {
   }
 
   HexColor(final String hexColor) : super(_getColorFromHex(hexColor));
+}
+
+class AppLayout {
+  static getSize(BuildContext context) {
+    return MediaQuery.of(context).size;
+  }
+
+  static getScreenWidth() {
+    return Get.width;
+  }
+
+  static getScreenHeight() {
+    return Get.height;
+  }
+
+  static getHeight(double pixels) {
+    double x = getScreenHeight() / pixels; // 800 / 4 = 4.0
+    return getScreenHeight() / x;
+  }
+
+  static getWidth(double pixels) {
+    double x = getScreenWidth() / pixels;
+    return getScreenWidth() / x;
+  }
 }

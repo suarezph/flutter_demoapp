@@ -6,6 +6,7 @@ import 'package:demoapp/router/router.gr.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:gap/gap.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -50,13 +51,17 @@ class _LoginFormState extends State<LoginForm> {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    const SizedBox(height: 10),
-                    const Icon(
-                      Icons.android,
-                      size: 100,
+                    const Gap(25),
+                    Container(
+                      width: 100,
+                      height: 100,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                      child: SvgPicture.asset('assets/images/logo.svg'),
                     ),
                     // hello
-                    const SizedBox(height: 65),
+                    const SizedBox(height: 55),
                     Text(
                       "Hello Again!",
                       style: GoogleFonts.bebasNeue(
