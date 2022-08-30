@@ -18,93 +18,95 @@ class DashboardScreen extends StatelessWidget {
       create: (context) => DashboardBloc(
         demoRepository: RepositoryProvider.of<DemoRepository>(context),
       )..add(LoadDemoEvent()),
-      child: BlocBuilder<DashboardBloc, DashboardState>(
-        builder: (context, state) {
-          return Scaffold(
-            backgroundColor: Styles.bgColor,
-            body: ListView(
-              children: [
-                Container(
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 20,
-                  ),
-                  child: Column(
-                    children: [
-                      const Gap(40),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                "Welcome back!",
-                                style: Styles.headLineStyle3,
+      child: RefreshIndicator(
+        onRefresh: () async {
+          BlocProvider.of<DashboardBloc>(context).add(LoadDemoEvent());
+        },
+        child: BlocBuilder<DashboardBloc, DashboardState>(
+          // buildWhen: (previous, current) => current is DemoLoadedState,
+          builder: (context, state) {
+            return Scaffold(
+              backgroundColor: Styles.bgColor,
+              body: ListView(
+                children: [
+                  Container(
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 20,
+                    ),
+                    child: Column(
+                      children: [
+                        const Gap(40),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  "Welcome back!",
+                                  style: Styles.headLineStyle3,
+                                ),
+                                const Gap(5),
+                                Text("Firstname Lastname",
+                                    style: Styles.headLineStyle2),
+                              ],
+                            ),
+                            Container(
+                              width: 50,
+                              height: 50,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(10),
                               ),
-                              const Gap(5),
-                              Text("Firstname Lastname",
-                                  style: Styles.headLineStyle2),
+                              child: SvgPicture.asset('assets/images/logo.svg'),
+                            ),
+                          ],
+                        ),
+                        const Gap(25),
+                        SingleChildScrollView(
+                          scrollDirection: Axis.horizontal,
+                          padding: const EdgeInsets.only(
+                            left: 10,
+                          ),
+                          child: Row(
+                            children: const [
+                              AppCreditBoxWidget(),
+                              AppCreditBoxWidget(),
+                              AppCreditBoxWidget()
                             ],
                           ),
-                          Container(
-                            width: 50,
-                            height: 50,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(10),
-                            ),
-                            child: SvgPicture.asset('assets/images/logo.svg'),
+                        ),
+                        const Gap(25),
+                        const AppHeaderViewWidget(
+                            bigText: "Announcements", smallText: "View All"),
+                        const Gap(15),
+
+                        if (state is DemoLoadingState) ...[
+                          const AppAnnouncementBoxLoadingWidget(),
+                          const AppAnnouncementBoxLoadingWidget(),
+                          const AppAnnouncementBoxLoadingWidget(),
+                        ],
+
+                        if (state is DemoLoadedState) ...[
+                          Column(
+                            children: const [
+                              AppAnnouncementBoxWidget(),
+                              AppAnnouncementBoxWidget(),
+                              AppAnnouncementBoxWidget(),
+                              AppAnnouncementBoxWidget(),
+                              AppAnnouncementBoxWidget(),
+                            ],
                           ),
                         ],
-                      ),
-                      const Gap(25),
-                      SingleChildScrollView(
-                        scrollDirection: Axis.horizontal,
-                        padding: const EdgeInsets.only(
-                          left: 10,
-                        ),
-                        child: Row(
-                          children: const [
-                            AppCreditBoxWidget(),
-                            AppCreditBoxWidget(),
-                            AppCreditBoxWidget()
-                          ],
-                        ),
-                      ),
-                      const Gap(25),
-                      const AppHeaderViewWidget(
-                          bigText: "Announcements", smallText: "View All"),
-                      const Gap(15),
 
-                      if (state is DemoLoadingState) ...[
-                        const AppAnnouncementBoxLoadingWidget(),
-                        const AppAnnouncementBoxLoadingWidget(),
-                        const AppAnnouncementBoxLoadingWidget(),
+                        const Gap(15), //sizedBox equavalent
                       ],
-
-                      if (state is DemoLoadedState) ...[
-                        Column(
-                          children: const [
-                            AppAnnouncementBoxWidget(),
-                            AppAnnouncementBoxWidget(),
-                            AppAnnouncementBoxWidget(),
-                            AppAnnouncementBoxWidget(),
-                            AppAnnouncementBoxWidget(),
-                          ],
-                        ),
-                      ],
-
-                      const Gap(15), //sizedBox equavalent
-                    ],
+                    ),
                   ),
-                ),
-              ],
-            ),
-          );
-
-          return Center(
-            child: Text('loading...'),
-          );
-        },
+                ],
+              ),
+            );
+          },
+        ),
       ),
     );
   }
