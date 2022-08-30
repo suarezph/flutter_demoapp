@@ -11,7 +11,7 @@ class OthersScreen extends StatelessWidget {
       child: Center(
         child: InkWell(
           onTap: () {
-            context.pushRoute(const MainReportRoute());
+            context.router.navigate(const MainReportRoute());
           },
           child: const Text(
             "visit to reports screen",

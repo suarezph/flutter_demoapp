@@ -7,34 +7,37 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'observer/app_bloc_observer.dart';
 
 void main() {
-  UserRepository userRepository = UserRepository();
   Bloc.observer = AppBlocObserver();
-  runApp(
-    BlocProvider(
-      create: (context) {
-        return AuthenticationBloc(userRepository)..add(AppStarted());
-      },
-      child: EntryApp(userRepository: userRepository),
-    ),
-  );
+  runApp(EntryApp());
 }
 
 class EntryApp extends StatelessWidget {
-  final UserRepository userRepository;
   final _appRouter = AppRouter();
-  EntryApp({Key? key, required this.userRepository}) : super(key: key);
+  EntryApp({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp.router(
-      debugShowCheckedModeBanner: false,
-      routerDelegate: _appRouter.delegate(
-        initialRoutes: [
-          AppRootRoute(userRepository: userRepository),
+    return MultiRepositoryProvider(
+      providers: [
+        RepositoryProvider<UserRepository>(
+          create: (context) => UserRepository(),
+        ),
+      ],
+      child: MultiBlocProvider(
+        providers: [
+          BlocProvider<AuthenticationBloc>(
+            create: (context) => AuthenticationBloc(
+              userRepository: context.read<UserRepository>(),
+            )..add(AppStarted()),
+          ),
         ],
+        child: MaterialApp.router(
+          debugShowCheckedModeBanner: false,
+          routerDelegate: _appRouter.delegate(),
+          routeInformationParser: _appRouter.defaultRouteParser(),
+          builder: (context, router) => router!,
+        ),
       ),
-      routeInformationParser: _appRouter.defaultRouteParser(),
-      builder: (context, router) => router!,
     );
   }
 }

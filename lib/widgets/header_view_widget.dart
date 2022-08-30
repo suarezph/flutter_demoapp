@@ -21,9 +21,7 @@ class AppHeaderViewWidget extends StatelessWidget {
         ),
         if (smallText != null)
           InkWell(
-            onTap: () {
-              print("You are tapped");
-            },
+            onTap: () {},
             child: Text(
               smallText!,
               style: Styles.headLineStyle4.copyWith(

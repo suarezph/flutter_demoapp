@@ -1,3 +1,5 @@
+import 'package:auto_route/auto_route.dart';
+import 'package:demoapp/constants/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -102,7 +104,7 @@ class RegistrationScreen extends StatelessWidget {
                   child: Container(
                     padding: const EdgeInsets.all(20),
                     decoration: BoxDecoration(
-                      color: Colors.deepPurple,
+                      color: Styles.primaryColor,
                       borderRadius: BorderRadius.circular(12),
                     ),
                     child: const Center(
@@ -123,7 +125,7 @@ class RegistrationScreen extends StatelessWidget {
                   children: [
                     const Text("Already a member?"),
                     GestureDetector(
-                      onTap: () => {},
+                      onTap: () => {context.router.pop()},
                       child: const Text(
                         ' Login now',
                         style: TextStyle(

@@ -13,7 +13,10 @@ class MainScreen extends StatelessWidget {
       // appBarBuilder: (context, tabsRouter) => AppBar(
       //   backgroundColor: Styles.bgColor,
       //   shadowColor: Colors.transparent,
-      //   title: const Text("Change to widget"),
+      //   title: const Text(
+      //     "Change to widget",
+      //     style: TextStyle(color: Colors.black),
+      //   ),
       //   centerTitle: true,
       //   leading: const AutoLeadingButton(),
       // ),
@@ -22,7 +25,7 @@ class MainScreen extends StatelessWidget {
         DashboardRoute(),
         WalletRoute(),
         ProfileRoute(),
-        OthersRoute(),
+        OthersRouter(),
       ],
       bottomNavigationBuilder: (context, tabsRouter) {
         return SalomonBottomBar(

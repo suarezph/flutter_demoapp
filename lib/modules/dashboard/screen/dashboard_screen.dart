@@ -54,7 +54,7 @@ class DashboardScreen extends StatelessWidget {
                     left: 10,
                   ),
                   child: Row(
-                    children: [
+                    children: const [
                       AppCreditBoxWidget(),
                       AppCreditBoxWidget(),
                       AppCreditBoxWidget()
@@ -62,13 +62,11 @@ class DashboardScreen extends StatelessWidget {
                   ),
                 ),
                 const Gap(25),
-                Container(
-                  child: const AppHeaderViewWidget(
-                      bigText: "Announcements", smallText: "View All"),
-                ),
+                const AppHeaderViewWidget(
+                    bigText: "Announcements", smallText: "View All"),
                 const Gap(15),
                 Column(
-                  children: [
+                  children: const [
                     AppAnnouncementBoxWidget(),
                     AppAnnouncementBoxWidget(),
                     AppAnnouncementBoxWidget(),

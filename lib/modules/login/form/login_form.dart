@@ -1,7 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:demoapp/constants/theme.dart';
 import 'package:demoapp/modules/login/login.dart';
-import 'package:demoapp/repositories/user_repository.dart';
 import 'package:demoapp/router/router.gr.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -10,18 +9,11 @@ import 'package:flutter_svg/svg.dart';
 import 'package:gap/gap.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class LoginForm extends StatefulWidget {
-  final UserRepository userRepository;
-
-  const LoginForm({Key? key, required this.userRepository}) : super(key: key);
-
-  @override
-  State<LoginForm> createState() => _LoginFormState();
-}
-
-class _LoginFormState extends State<LoginForm> {
+class LoginForm extends StatelessWidget {
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
+
+  LoginForm({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -162,14 +154,40 @@ class _LoginFormState extends State<LoginForm> {
                             ),
                     ),
                     const Gap(25),
+
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        const Text("Don't yet account?"),
+                        InkWell(
+                          onTap: () {
+                            context.router.push(const RegistrationRoute());
+                          },
+                          child: const Text(
+                            ' Register now!',
+                            style: TextStyle(
+                              color: Colors.blue,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+
+                    const Gap(10),
+                    Container(
+                      child: Text(
+                        'OR',
+                      ),
+                    ),
+                    const Gap(10),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         const Text("Forgot your password?"),
                         InkWell(
                           onTap: () {
-                            AutoRouter.of(context)
-                                .push(const ForgotPasswordRoute());
+                            context.router.push(const ForgotPasswordRoute());
                           },
                           child: const Text(
                             ' Reset Password',

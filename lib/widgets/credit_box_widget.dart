@@ -31,7 +31,7 @@ class AppCreditBoxWidget extends StatelessWidget {
               ),
             ],
           ),
-          padding: EdgeInsets.all(20),
+          padding: const EdgeInsets.all(20),
           margin: EdgeInsets.only(
             right: AppLayout.getHeight(16),
           ),
