@@ -1,6 +1,7 @@
 import 'package:demoapp/constants/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
+import 'package:skeleton_text/skeleton_text.dart';
 
 class AppAnnouncementBoxWidget extends StatelessWidget {
   const AppAnnouncementBoxWidget({Key? key}) : super(key: key);
@@ -38,4 +39,24 @@ class AppAnnouncementBoxWidget extends StatelessWidget {
       ),
     );
   }
+}
+
+class AppAnnouncementBoxLoadingWidget extends StatelessWidget {
+  const AppAnnouncementBoxLoadingWidget({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) => SkeletonAnimation(
+        shimmerColor: Colors.grey,
+        borderRadius: BorderRadius.circular(12),
+        shimmerDuration: 1000,
+        child: Container(
+          width: AppLayout.getScreenWidth(),
+          height: AppLayout.getHeight(70),
+          decoration: BoxDecoration(
+            color: Colors.grey[300],
+            borderRadius: BorderRadius.circular(12),
+          ),
+          margin: EdgeInsets.only(bottom: 10),
+        ),
+      );
 }

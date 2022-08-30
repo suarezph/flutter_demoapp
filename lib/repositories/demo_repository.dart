@@ -8,12 +8,12 @@ class DemoRepository {
   String endpoint = 'https://reqres.in/api/users?page=2';
 
   Future<List<DemoModel>> getBoredActivity() async {
-    Response response = await _dio.get(endpoint);
-    if (response.statusCode == 200) {
-      final List result = jsonDecode(response.data);
+    try {
+      Response response = await _dio.get(endpoint);
+      final List result = response.data['data'];
       return result.map((e) => DemoModel.fromJson(e)).toList();
-    } else {
-      throw Exception(response.statusMessage);
+    } catch (e) {
+      throw Exception(e.toString());
     }
   }
 }
