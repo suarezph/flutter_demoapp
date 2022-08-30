@@ -1,4 +1,6 @@
 import 'package:demoapp/modules/authentication/bloc/authentication_bloc.dart';
+import 'package:demoapp/modules/dashboard/bloc/dashboard_bloc.dart';
+import 'package:demoapp/repositories/demo_repository.dart';
 import 'package:demoapp/repositories/user_repository.dart';
 import 'package:demoapp/router/router.gr.dart';
 import 'package:flutter/material.dart';
@@ -22,6 +24,9 @@ class EntryApp extends StatelessWidget {
         RepositoryProvider<UserRepository>(
           create: (context) => UserRepository(),
         ),
+        RepositoryProvider<DemoRepository>(
+          create: (context) => DemoRepository(),
+        ),
       ],
       child: MultiBlocProvider(
         providers: [
@@ -29,6 +34,11 @@ class EntryApp extends StatelessWidget {
             create: (context) => AuthenticationBloc(
               userRepository: context.read<UserRepository>(),
             )..add(AppStarted()),
+          ),
+          BlocProvider(
+            create: (context) => DashboardBloc(
+              demoRepository: context.read<DemoRepository>(),
+            )..add(LoadDemoEvent()),
           ),
         ],
         child: MaterialApp.router(

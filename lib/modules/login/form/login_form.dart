@@ -175,11 +175,7 @@ class LoginForm extends StatelessWidget {
                     ),
 
                     const Gap(10),
-                    Container(
-                      child: Text(
-                        'OR',
-                      ),
-                    ),
+                    const Text('OR'),
                     const Gap(10),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
