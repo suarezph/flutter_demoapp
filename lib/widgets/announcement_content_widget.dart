@@ -56,7 +56,7 @@ class AppAnnouncementBoxLoadingWidget extends StatelessWidget {
             color: Colors.grey[300],
             borderRadius: BorderRadius.circular(12),
           ),
-          margin: EdgeInsets.only(bottom: 10),
+          margin: const EdgeInsets.only(bottom: 10),
         ),
       );
 }

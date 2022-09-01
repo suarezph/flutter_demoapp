@@ -4,6 +4,7 @@ class DemoModel {
   final String firstname;
   final String lastname;
   final String avatar;
+  String? error;
 
   DemoModel({
     required this.id,
@@ -11,6 +12,7 @@ class DemoModel {
     required this.firstname,
     required this.lastname,
     required this.avatar,
+    this.error,
   });
 
   factory DemoModel.fromJson(Map<String, dynamic> json) {
@@ -22,4 +24,8 @@ class DemoModel {
         avatar: json['avatar'] ??
             'https://img.freepik.com/free-vector/illustration-user-avatar-icon_53876-59');
   }
+
+  // DemoModel.withError(String errorMessage) {
+  //   error = errorMessage;
+  // }
 }
