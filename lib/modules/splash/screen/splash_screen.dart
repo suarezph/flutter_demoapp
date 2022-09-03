@@ -11,7 +11,13 @@ class SplashScreen extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: const [
           Center(
-            child: CircularProgressIndicator(),
+            child: Text(
+              "Loading...",
+              style: TextStyle(
+                color: Colors.black,
+                fontSize: 30,
+              ),
+            ),
           ),
         ],
       ),

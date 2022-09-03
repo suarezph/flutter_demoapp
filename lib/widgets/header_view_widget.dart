@@ -1,14 +1,16 @@
 import 'package:demoapp/constants/theme.dart';
-import 'package:demoapp/modules/dashboard/screen/dashboard_filter_screen.dart';
 import 'package:flutter/material.dart';
 
 class AppHeaderViewWidget extends StatelessWidget {
   final String bigText;
   final String? smallText;
+  final VoidCallback? smallTextTap;
+
   const AppHeaderViewWidget({
     Key? key,
     required this.bigText,
     this.smallText,
+    this.smallTextTap,
   }) : super(key: key);
 
   @override
@@ -22,20 +24,7 @@ class AppHeaderViewWidget extends StatelessWidget {
         ),
         if (smallText != null)
           InkWell(
-            onTap: () {
-              showModalBottomSheet(
-                backgroundColor: Colors.transparent,
-                isScrollControlled: true,
-                isDismissible: true,
-                enableDrag: false,
-                shape: const RoundedRectangleBorder(
-                    borderRadius:
-                        BorderRadius.vertical(top: Radius.circular(20.0))),
-                context: context,
-                builder: (BuildContext context) =>
-                    const DashboardFilterScreen(),
-              );
-            },
+            onTap: smallTextTap,
             child: Text(
               smallText!,
               style: Styles.headLineStyle4.copyWith(

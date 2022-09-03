@@ -1,6 +1,8 @@
 import 'package:demoapp/modules/authentication/bloc/authentication_bloc.dart';
 import 'package:demoapp/modules/dashboard/bloc/dashboard_bloc.dart';
+import 'package:demoapp/modules/intro/intro.dart';
 import 'package:demoapp/repositories/demo_repository.dart';
+import 'package:demoapp/repositories/device_repository.dart';
 import 'package:demoapp/repositories/user_repository.dart';
 import 'package:demoapp/router/router.gr.dart';
 import 'package:flutter/material.dart';
@@ -27,6 +29,9 @@ class EntryApp extends StatelessWidget {
         RepositoryProvider<DemoRepository>(
           create: (context) => DemoRepository(),
         ),
+        RepositoryProvider<DeviceRepository>(
+          create: (context) => DeviceRepository(),
+        )
       ],
       child: MultiBlocProvider(
         providers: [
@@ -38,7 +43,12 @@ class EntryApp extends StatelessWidget {
           BlocProvider(
             create: (context) => DashboardBloc(
               demoRepository: context.read<DemoRepository>(),
-            )..add(LoadDemoEvent()),
+            ),
+          ),
+          BlocProvider(
+            create: (context) => IntroBloc(
+              context.read<DeviceRepository>(),
+            ),
           ),
         ],
         child: MaterialApp.router(

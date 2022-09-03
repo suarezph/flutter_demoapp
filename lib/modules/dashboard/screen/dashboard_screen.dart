@@ -14,6 +14,19 @@ class DashboardScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    void _openFilterScreen() {
+      showModalBottomSheet(
+        backgroundColor: Colors.transparent,
+        isScrollControlled: true,
+        isDismissible: true,
+        enableDrag: false,
+        shape: const RoundedRectangleBorder(
+            borderRadius: BorderRadius.vertical(top: Radius.circular(20.0))),
+        context: context,
+        builder: (BuildContext context) => const DashboardFilterScreen(),
+      );
+    }
+
     return BlocProvider(
       create: (context) => DashboardBloc(
         demoRepository: RepositoryProvider.of<DemoRepository>(context),
@@ -76,8 +89,11 @@ class DashboardScreen extends StatelessWidget {
                           ),
                         ),
                         const Gap(25),
-                        const AppHeaderViewWidget(
-                            bigText: "Announcements", smallText: "View All"),
+                        AppHeaderViewWidget(
+                          bigText: "Announcements",
+                          smallText: "View All",
+                          smallTextTap: _openFilterScreen,
+                        ),
                         const Gap(15),
 
                         if (state is DemoLoadingState) ...[

@@ -1,13 +1,13 @@
 import 'package:demoapp/constants/theme.dart';
+import 'package:demoapp/modules/intro/bloc/intro_bloc.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gap/gap.dart';
 import 'package:introduction_screen/introduction_screen.dart';
 
 class IntroContentScreen extends StatelessWidget {
-  final VoidCallback afterIntroComplete;
-  const IntroContentScreen({Key? key, required this.afterIntroComplete})
-      : super(key: key);
+  const IntroContentScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -98,10 +98,12 @@ class IntroContentScreen extends StatelessWidget {
     return IntroductionScreen(
       pages: pages,
       onDone: () {
-        afterIntroComplete();
+        BlocProvider.of<IntroBloc>(context)
+            .add(const IntroSetStorageEvent(value: true));
       },
       onSkip: () {
-        afterIntroComplete();
+        BlocProvider.of<IntroBloc>(context)
+            .add(const IntroSetStorageEvent(value: true));
       },
       skip: const Text(
         "Skip",

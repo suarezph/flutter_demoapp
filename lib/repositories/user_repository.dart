@@ -31,7 +31,7 @@ class UserRepository {
 
   Future<void> deleteToken() async {
     storage.delete(key: 'token');
-    storage.deleteAll();
+    // storage.deleteAll();
   }
 
   Future<String> login(String email, String password) async {

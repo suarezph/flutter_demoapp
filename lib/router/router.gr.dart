@@ -93,11 +93,8 @@ class AppRouter extends _i16.RootStackRouter {
           routeData: routeData, child: const _i14.LoginScreen());
     },
     IntroContentRoute.name: (routeData) {
-      final args = routeData.argsAs<IntroContentRouteArgs>();
       return _i16.MaterialPageX<dynamic>(
-          routeData: routeData,
-          child: _i15.IntroContentScreen(
-              key: args.key, afterIntroComplete: args.afterIntroComplete));
+          routeData: routeData, child: const _i15.IntroContentScreen());
     }
   };
 
@@ -261,26 +258,9 @@ class LoginRoute extends _i16.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i15.IntroContentScreen]
-class IntroContentRoute extends _i16.PageRouteInfo<IntroContentRouteArgs> {
-  IntroContentRoute(
-      {_i17.Key? key, required void Function() afterIntroComplete})
-      : super(IntroContentRoute.name,
-            path: 'introcontent',
-            args: IntroContentRouteArgs(
-                key: key, afterIntroComplete: afterIntroComplete));
+class IntroContentRoute extends _i16.PageRouteInfo<void> {
+  const IntroContentRoute()
+      : super(IntroContentRoute.name, path: 'introcontent');
 
   static const String name = 'IntroContentRoute';
-}
-
-class IntroContentRouteArgs {
-  const IntroContentRouteArgs({this.key, required this.afterIntroComplete});
-
-  final _i17.Key? key;
-
-  final void Function() afterIntroComplete;
-
-  @override
-  String toString() {
-    return 'IntroContentRouteArgs{key: $key, afterIntroComplete: $afterIntroComplete}';
-  }
 }
