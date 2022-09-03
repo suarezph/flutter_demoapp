@@ -39,19 +39,23 @@ class MainScreen extends StatelessWidget {
           unselectedItemColor: const Color(0xFF526480),
           items: [
             SalomonBottomBarItem(
-              icon: const Icon(Icons.dashboard, size: 25),
-              title: const Text("Dashboard"),
+              icon: const Icon(Icons.home_rounded, size: 20),
+              title: Text(
+                "Dashboard",
+                style: Styles.headLineStyle4
+                    .copyWith(color: Styles.primaryColor, fontSize: 14),
+              ),
             ),
             SalomonBottomBarItem(
-              icon: const Icon(Icons.wallet, size: 25),
+              icon: const Icon(Icons.wallet, size: 20),
               title: const Text("Wallet"),
             ),
             SalomonBottomBarItem(
-              icon: const Icon(Icons.person, size: 25),
+              icon: const Icon(Icons.person, size: 20),
               title: const Text("Profile"),
             ),
             SalomonBottomBarItem(
-              icon: const Icon(Icons.more_horiz_rounded, size: 25),
+              icon: const Icon(Icons.more_horiz_outlined, size: 20),
               title: const Text("More"),
             ),
           ],
